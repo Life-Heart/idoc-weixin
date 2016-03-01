@@ -1,0 +1,9 @@
+{
+  "name": "weixin",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.13.4",
+    "mongoose": "^4.4.5",
+    "wechat": "^2.0.3"
+  }
+}
