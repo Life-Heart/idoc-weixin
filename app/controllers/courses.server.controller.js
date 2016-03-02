@@ -8,7 +8,20 @@ exports.list = function(req, res, num, next) {
                 if(err){
                     console.log(err);
                 }else{
-                    next(courses, num);
+                    var document = require('./documents.server.controller.js');
+                    var i = 0;
+                    function callback() {
+                        if(i === courses.length) {
+                            next(courses, num);
+                        }
+                    };
+                    courses.forEach(function(course) {
+                        document.count(req, res, course, function(count) {
+                            course.count = count;
+                            i++;
+                            callback();
+                        });
+                    });
                 }
             });
         }

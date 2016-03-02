@@ -31,6 +31,10 @@ exports.list = function(req, res, next) {
                 var replyStr = '考卷列表';
                 for(var i=0;i<data.length;i++){
                     replyStr += '\n'+'<a href="'+data[i].link+'">'+data[i].title+'</a>';
+                    if(i === 20) {
+                         replyStr += '\n'+'<a href="http://idoc.duohuo.org/">点击进入web页面查看更多考卷</a>';
+                         break;
+                    }
                 }
                 res.reply(replyStr);
             });
@@ -39,7 +43,7 @@ exports.list = function(req, res, next) {
             course.list(req, res, message.Content, function(data, num) {
                 var replyStr = '请选择课程';
                 for(var i=0;i<data.length;i++){
-                    replyStr += '\n'+num+'-'+i+'.'+data[i].courseName;
+                    replyStr += '\n'+num+'-'+i+'.'+data[i].courseName+'('+data[i].count+')';
                 }
                 res.reply(replyStr);
             });
